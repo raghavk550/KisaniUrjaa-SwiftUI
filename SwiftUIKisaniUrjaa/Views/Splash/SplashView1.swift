@@ -23,6 +23,7 @@ struct SplashView1: View {
                 VideoPlayer(player: player)
                     .aspectRatio(contentMode: .fill)
                     .frame(width: geo.size.width, height: geo.size.height)
+                    .disabled(true)
             }
             VStack {
                 GeometryReader { geo in

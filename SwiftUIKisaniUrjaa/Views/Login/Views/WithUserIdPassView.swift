@@ -12,6 +12,7 @@ struct WithUserIdPassView: View {
     @Binding var pass: String
     @Binding var isSecurePass: Bool
     var focusedField: FocusState<PasswordField?>.Binding
+    let forgotPressed: ((_ isForgotPass: Bool) -> ())
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -34,13 +35,12 @@ struct WithUserIdPassView: View {
                     Spacer()
                     
                     Button {
-                        
+                        forgotPressed(false)
                     } label: {
                         Text("Forgot User ID?")
                             .font(.system(size: 14, weight: .semibold))
                             .foregroundStyle(Color(hex: "FC8019"))
                     }
-                    
                 }
             }
             
@@ -57,7 +57,7 @@ struct WithUserIdPassView: View {
                         TextField("Create Password", text: $pass)
                             .opacity(isSecurePass ? 0 : 1)
                     }
-                    .textContentType(.newPassword)
+                    .textContentType(.password)
                     .autocorrectionDisabled(true)
                     .textInputAutocapitalization(.never)
                     .focused(focusedField, equals: .password)
@@ -78,13 +78,12 @@ struct WithUserIdPassView: View {
                     Spacer()
                     
                     Button {
-                        
+                        forgotPressed(true)
                     } label: {
                         Text("Forgot Password?")
                             .font(.system(size: 14, weight: .semibold))
                             .foregroundStyle(Color(hex: "FC8019"))
                     }
-                    
                 }
             }
             .padding(.top, 24)
@@ -108,7 +107,9 @@ struct PreviewWrapper: View {
             userId: $userId,
             pass: $pass,
             isSecurePass: $isSecurePass,
-            focusedField: $focusedField
+            focusedField: $focusedField,
+            forgotPressed: { _ in
+            }
         )
         .padding(.horizontal, 20)
     }

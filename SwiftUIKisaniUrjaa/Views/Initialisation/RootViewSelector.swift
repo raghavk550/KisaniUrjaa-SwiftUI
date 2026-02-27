@@ -10,6 +10,7 @@ import SwiftUI
 
 struct RootViewSelector: View {
     @EnvironmentObject var appState: AppState
+    private let forgotAuth = ForgotAuthType()
 
     var body: some View {
         switch appState.root {
@@ -30,16 +31,14 @@ struct RootViewSelector: View {
                 SetupAccountView(mobNo: .constant(""))
             }
         case .login:
-            NavigationStack {
-                LoginView()
-            }
+            LoginFlowView()
         case .createAccount:
             NavigationStack {
                 CreateUserIdView(userId: .constant(""))
             }
         case .home:
             NavigationStack {
-                EmptyView()
+                HomeView()
             }
         }
     }

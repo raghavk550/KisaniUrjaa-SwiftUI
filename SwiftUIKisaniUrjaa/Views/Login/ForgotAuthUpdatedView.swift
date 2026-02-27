@@ -1,32 +1,32 @@
 //
-//  AccountCreationView.swift
+//  ForgotAuthUpdatedView.swift
 //  SwiftUIKisaniUrjaa
 //
-//  Created by Raghav Kakria on 24/02/26.
+//  Created by Raghav Kakria on 27/02/26.
 //
 
 import SwiftUI
 
-struct AccountCreationView: View {
+struct ForgotAuthUpdatedView: View {
+    @Environment(\.forgotAuthType) private var authType
     @EnvironmentObject var appState: AppState
+    
     var body: some View {
         ZStack {
             Image("bg")
                 .resizable()
             
-            VStack(spacing: 28) {
-                Image("account-creation")
+            VStack(spacing: 16) {
+                Image("tick_img")
                 
-                Text("Thanks for joining us!")
+                Text("\(authType?.isForgotPass ?? false ? "Password" : "User ID") Updated")
                     .padding(.horizontal, 10)
-                    .font(.system(size: 18, weight: .semibold))
-                    .foregroundStyle(Color(hex: "161413"))
+                    .font(.system(size: 24, weight: .semibold))
                 
-                Text("Your account is ready. Complete your profile to get started.")
-                    .padding(.horizontal, 10)
-                    .multilineTextAlignment(.center)
+                Text("Your \(authType?.isForgotPass ?? false ? "password" : "user id") has been successfully updated.")
                     .font(.system(size: 14, weight: .medium))
-                    .foregroundStyle(Color(hex: "353231"))
+                    .foregroundStyle(Color(hex: "6C7278"))
+                    .multilineTextAlignment(.center)
             }
             .padding(24)
             .frame(maxWidth: .infinity)
@@ -48,7 +48,7 @@ struct AccountCreationView: View {
 
 #Preview {
     NavigationStack {
-        AccountCreationView()
+        ForgotAuthUpdatedView()
             .environmentObject(AppState())
     }
 }

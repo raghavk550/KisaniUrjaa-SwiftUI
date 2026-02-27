@@ -1,32 +1,31 @@
 //
-//  AccountCreationView.swift
+//  ForgotAuthOTPVerifiedView.swift
 //  SwiftUIKisaniUrjaa
 //
-//  Created by Raghav Kakria on 24/02/26.
+//  Created by Raghav Kakria on 27/02/26.
 //
 
 import SwiftUI
 
-struct AccountCreationView: View {
-    @EnvironmentObject var appState: AppState
+struct ForgotAuthOTPVerifiedView: View {
+    @Environment(\.loginNavigationPath) private var path
+    
     var body: some View {
         ZStack {
             Image("bg")
                 .resizable()
             
-            VStack(spacing: 28) {
-                Image("account-creation")
+            VStack(spacing: 16) {
+                Image("tick_img")
                 
-                Text("Thanks for joining us!")
+                Text("Verified Successfully")
                     .padding(.horizontal, 10)
-                    .font(.system(size: 18, weight: .semibold))
-                    .foregroundStyle(Color(hex: "161413"))
+                    .font(.system(size: 24, weight: .semibold))
                 
-                Text("Your account is ready. Complete your profile to get started.")
+                Text("Your OTP has been successfully Verified")
                     .padding(.horizontal, 10)
-                    .multilineTextAlignment(.center)
                     .font(.system(size: 14, weight: .medium))
-                    .foregroundStyle(Color(hex: "353231"))
+                    .foregroundStyle(Color(hex: "6C7278"))
             }
             .padding(24)
             .frame(maxWidth: .infinity)
@@ -39,7 +38,7 @@ struct AccountCreationView: View {
         .ignoresSafeArea()
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                appState.root = .home
+                path?.wrappedValue.append(LoginRoute.reset)
             }
         }
         .navigationBarBackButtonHidden(true)
@@ -48,7 +47,6 @@ struct AccountCreationView: View {
 
 #Preview {
     NavigationStack {
-        AccountCreationView()
-            .environmentObject(AppState())
+        ForgotAuthOTPVerifiedView()
     }
 }

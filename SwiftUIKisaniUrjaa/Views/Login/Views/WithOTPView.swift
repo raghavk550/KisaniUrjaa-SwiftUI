@@ -9,17 +9,20 @@ import SwiftUI
 
 struct WithOTPView: View {
     @Binding var mobNo: String
+    let isShowRequiredImg: Bool
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack(spacing: 2) {
                 Text("Mobile Number")
                     .padding(.top, 24)
                 
-                Image("required_img")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 8, height: 20)
-                    .offset(y: 9)
+                if isShowRequiredImg {
+                    Image("required_img")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 8, height: 20)
+                        .offset(y: 9)
+                }
             }
             
             HStack(spacing: 10) {
@@ -41,6 +44,6 @@ struct WithOTPView: View {
 }
 
 #Preview {
-    WithOTPView(mobNo: .constant(""))
+    WithOTPView(mobNo: .constant(""), isShowRequiredImg: true)
         .padding(.horizontal, 20)
 }
