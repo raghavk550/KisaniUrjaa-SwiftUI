@@ -26,3 +26,9 @@ extension Color {
         self.init(red: r, green: g, blue: b)
     }
 }
+
+extension View {
+    func measureHeight(to height: Binding<CGFloat>, with numberOfRows: Int, minusHeight: CGFloat) -> some View {
+        self.modifier(AdaptableHeightModifier(currentHeight: height, numberOfItems: CGFloat(numberOfRows), minusHeight: minusHeight))
+    }
+}

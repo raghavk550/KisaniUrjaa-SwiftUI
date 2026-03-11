@@ -10,33 +10,27 @@ import SwiftUI
 struct SegmentedProgressView: View {
     
     var totalSteps: Int = 3
-    var currentStep: Int = 1
-    var progress: CGFloat = 0.4   // progress inside current step (0–1)
+    var progress: CGFloat = 0.4
     
     var body: some View {
         HStack(spacing: 8) {
+            
             ForEach(0..<totalSteps, id: \.self) { index in
                 
                 GeometryReader { geo in
                     
+                    let segmentSize = 1 / CGFloat(totalSteps)
+                    let segmentStart = CGFloat(index) * segmentSize
+                    let segmentProgress = max(0, min(1, (progress - segmentStart) / segmentSize))
+                    
                     ZStack(alignment: .leading) {
                         
-                        // Background
                         RoundedRectangle(cornerRadius: 3)
                             .fill(Color.gray.opacity(0.3))
                         
-                        // Filled
-                        if index < currentStep {
-                            RoundedRectangle(cornerRadius: 3)
-                                .fill(Color.orange)
-                        }
-                        
-                        // Current step progress
-                        if index == currentStep {
-                            RoundedRectangle(cornerRadius: 3)
-                                .fill(Color.orange)
-                                .frame(width: geo.size.width * progress)
-                        }
+                        RoundedRectangle(cornerRadius: 3)
+                            .fill(Color.orange)
+                            .frame(width: geo.size.width * segmentProgress)
                     }
                 }
                 .frame(height: 6)
@@ -49,8 +43,7 @@ struct SegmentedProgressView: View {
 #Preview {
     SegmentedProgressView(
         totalSteps: 3,
-        currentStep: 0,
-        progress: 0.5
+        progress: 0.3
     )
     .padding(.horizontal, 16)
 }
