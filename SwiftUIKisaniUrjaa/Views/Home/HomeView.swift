@@ -16,6 +16,7 @@ struct HomeView: View {
     @State private var isDocSelected: Bool = false
     @State private var currentStep: Int = 0
     @State private var currentPercent: Int = 20
+    @EnvironmentObject var appState: AppState
     
     var body: some View {
         GeometryReader { geo in
@@ -86,6 +87,8 @@ struct HomeView: View {
                         HomeStep2View { isDocSheet, isKisaniSheet in
                             
                         }
+                    case 2, 3:
+                        HomeStep3View()
                     default:
                         EmptyView()
                     }
@@ -93,6 +96,8 @@ struct HomeView: View {
                     Button("Continue") {
                         if currentStep < 3 {
                             self.currentStep += 1
+                        } else {
+                            appState.root = .mainHome
                         }
                         switch currentStep {
                         case 1:
@@ -100,9 +105,9 @@ struct HomeView: View {
                         case 2:
                             self.currentPercent = 70
                         case 3:
-                            self.currentPercent = 80
-                        default:
                             self.currentPercent = 100
+                        default:
+                            break
                         }
                     }
                     .frame(maxWidth: .infinity)
@@ -155,5 +160,6 @@ struct HomeView: View {
 #Preview {
     NavigationStack {
         HomeView()
+            .environmentObject(AppState())
     }
 }

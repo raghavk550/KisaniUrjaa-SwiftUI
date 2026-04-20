@@ -26,7 +26,8 @@ struct TooltipView: View {
             Text(text)
                 .font(.footnote)
                 .foregroundColor(.white)
-                .padding(12)
+                .padding(.vertical, 8)
+                .padding(.horizontal, 4)
                 .multilineTextAlignment(.leading)
                 .fixedSize(horizontal: false, vertical: true)
                 .background(
@@ -42,5 +43,5 @@ struct TooltipView: View {
 }
 
 #Preview {
-    TooltipView(text: "Hello World")
+    TooltipView(text: "Hello World, Hello World, Hello World, Hello World, Hello World")
 }

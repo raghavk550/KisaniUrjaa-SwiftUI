@@ -40,6 +40,10 @@ struct RootViewSelector: View {
             NavigationStack {
                 HomeView()
             }
+        case .mainHome:
+            NavigationStack {
+                MainHomeView()
+            }
         }
     }
 }

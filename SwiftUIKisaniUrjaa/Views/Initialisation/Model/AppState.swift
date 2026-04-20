@@ -20,4 +20,5 @@ enum RootView {
     case login
     case createAccount
     case home
+    case mainHome
 }

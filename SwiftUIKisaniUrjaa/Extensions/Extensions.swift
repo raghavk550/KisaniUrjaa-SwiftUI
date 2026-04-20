@@ -31,4 +31,18 @@ extension View {
     func measureHeight(to height: Binding<CGFloat>, with numberOfRows: Int, minusHeight: CGFloat) -> some View {
         self.modifier(AdaptableHeightModifier(currentHeight: height, numberOfItems: CGFloat(numberOfRows), minusHeight: minusHeight))
     }
+    
+    func readHeight(_ onChange: @escaping (CGFloat) -> Void) -> some View {
+        background(
+            GeometryReader { geo in
+                Color.clear
+                    .preference(key: AdaptableHeightPreferenceKey.self, value: geo.size.height)
+            }
+        )
+        .onPreferenceChange(AdaptableHeightPreferenceKey.self) { height in
+            if let height {
+                onChange(height)
+            }
+        }
+    }
 }

@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "Whatsapp-Icon--Streamline-Svg-Logos.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "Whatsapp-Icon--Streamline-Svg-Logos@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "Whatsapp-Icon--Streamline-Svg-Logos@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
